@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.DAO;
+//import model.DAO;
 
 @WebServlet(urlPatterns = {"/Controller", "/main"})
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	DAO dao = new DAO();
+	//DAO dao = new DAO();
     
     public Controller() {
         super();
@@ -21,10 +21,23 @@ public class Controller extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String action = request.getServletPath();
+		System.out.println(action);
+		
+		if (action.equals("/main")) {
+			contatos(request, response);
+		}
 		
 		// teste conexao
-		dao.testeConnection();
+		//dao.testeConnection();
+	}
+	
+	
+	// litar contatos
+	protected void contatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// redirecionamento de página
+		response.sendRedirect("agenda.jsp");
 	}
 
 }

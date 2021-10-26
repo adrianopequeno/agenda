@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>Agenda de contatos</title>
+	<link rel="icon" href="imagens/favicon.png" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<h1>Criar novo contato</h1>
+	
+	<form name="frmContato" action="">
+		<table>
+			<tr>
+				<td><input type="text" name="nome" placeholder="Nome" class="caixa1"/></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="fone" placeholder="Telefone" class="caixa2"/></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="email" placeholder="E-mail" class="caixa1" /></td>
+			</tr>
+		</table>
+		<input type="button" class="botao1" value="Adicionar" onclick="validarCampos()"/>
+	</form>
+	
+	<script type="text/javascript" src="js/validador.js"></script>
+</body>
+</html>

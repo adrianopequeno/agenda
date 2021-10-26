@@ -2,7 +2,6 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DAO {
 
@@ -25,12 +24,12 @@ public class DAO {
 	}
 	
 	// testar conexao
-	public void testeConnection() {
+	/*public void testeConnection() {
 		try {
 			Connection conn = conectar();
 			System.out.println("OK!");
 		} catch (Exception e) {
 			System.out.println("ERRO: " + e.getMessage());
 		}
-	}
+	}*/
 }
