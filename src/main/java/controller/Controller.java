@@ -60,8 +60,8 @@ public class Controller extends HttpServlet {
 		contato.setFone(request.getParameter("fone"));
 		contato.setEmail(request.getParameter("email"));
 		
-		System.out.println(contato.getNome());
+		/*System.out.println(contato.getNome());
 		System.out.println(contato.getFone());
-		System.out.println(contato.getEmail());
+		System.out.println(contato.getEmail());*/
 	}
 }
