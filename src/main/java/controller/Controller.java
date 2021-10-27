@@ -63,5 +63,9 @@ public class Controller extends HttpServlet {
 		/*System.out.println(contato.getNome());
 		System.out.println(contato.getFone());
 		System.out.println(contato.getEmail());*/
+		
+		dao.inserirContato(contato);
+		// redirect a main
+		response.sendRedirect("main");
 	}
 }
