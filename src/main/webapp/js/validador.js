@@ -16,6 +16,6 @@
 			frmContato.nome.focus();
 			return false;
 		} else {
-			docuemnt.forms["frmContato"].submit();
+			document.forms["frmContato"].submit();
 		}
 	}
