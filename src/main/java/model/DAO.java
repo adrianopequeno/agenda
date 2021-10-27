@@ -3,6 +3,8 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class DAO {
 
@@ -40,6 +42,34 @@ public class DAO {
 			conn.close();
 		} catch (Exception e) {
 			System.out.println("ERRO: " + e.getMessage());
+		}
+	}
+	
+	public ArrayList<JavaBeans> listarContato() {
+		ArrayList<JavaBeans> contatos = new ArrayList<>();
+		
+		String read = "SELECT * FROM contatos ORDER BY nome";
+		
+		try {
+			Connection conn = conectar();
+			PreparedStatement pst = conn.prepareStatement(read);
+			ResultSet rs = pst.executeQuery();
+			
+			while (rs.next()) {
+				Integer idcon = Integer.parseInt(rs.getString(1).toString());
+				String nome = rs.getString(2);
+				String fone = rs.getString(3);
+				String email = rs.getString(4);
+				
+				contatos.add(new JavaBeans(idcon, nome, fone, email));
+			}
+			
+			conn.close();
+			
+			return contatos;
+		} catch (Exception e) {
+			System.out.println("ERRO: " + e.getMessage());
+			return null;
 		}
 	}
 	
