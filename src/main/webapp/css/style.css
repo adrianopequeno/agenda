@@ -34,15 +34,20 @@ h1 {
 	cursor: pointer;
 }
 
-.caixa1, .caixa2 {
+.caixa1, .caixa2, #caixa3 {
 	padding: 5px;
 	margin-bottom: 10px;
-	border: 1px solid #66bbff;
 	border-radius: 5px;
 }
-
+.caixa1, .caixa2 {
+	border: 1px solid #66bbff;
+}
 .caixa1 {
 	width: 320px;
+}
+
+#caixa3 {
+	border: 1px solid #ff0000;
 }
 
 

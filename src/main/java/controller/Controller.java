@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,6 +34,10 @@ public class Controller extends HttpServlet {
 			contatos(request, response);
 		} else if (action.equals("/insert")) {
 			novoContato(request, response);
+		} else if (action.equals("/select")) {
+			listarContato(request, response);
+		} else if (action.equals("/update")) {
+			editarContato(request, response);
 		} else {
 			response.sendRedirect("index.html");
 		}
@@ -82,6 +86,54 @@ public class Controller extends HttpServlet {
 		
 		dao.inserirContato(contato);
 		// redirect a main
+		response.sendRedirect("main");
+	}
+	
+	
+	private void listarContato(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// recebendo o id do contato
+		//Integer idcon = Integer.getInteger(request.getParameter("idcon").toString());
+		String idcon = request.getParameter("idcon");
+		//System.out.println(idcon);
+		
+		// setar a variavel JavaBeans
+		contato.setIdcon(Integer.parseInt(idcon));
+		// Executando o metodo selecionarContato (DAO)
+		dao.selecionarContato(contato);
+		
+		/*System.out.println(contato.getIdcon());
+		System.out.println(contato.getNome());
+		System.out.println(contato.getFone());
+		System.out.println(contato.getEmail());*/
+		
+		// setar os atributos no formulario com o JavaBeans
+		request.setAttribute("idcon", contato.getIdcon());
+		request.setAttribute("nome", contato.getNome());
+		request.setAttribute("fone", contato.getFone());
+		request.setAttribute("email", contato.getEmail());
+		
+		// Encaminhar ao documento editar.jsp
+		RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
+		rd.forward(request, response);
+	}
+	
+	private void editarContato (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// teste de recebimento
+		/*System.out.println(request.getParameter("idcon"));
+		System.out.println(request.getParameter("nome"));
+		System.out.println(request.getParameter("fone"));
+		System.out.println(request.getParameter("email"));*/
+		
+		// setar as vaiaveis JavaBeasn
+		contato.setIdcon(Integer.parseInt(request.getParameter("idcon")));
+		contato.setNome(request.getParameter("nome"));
+		contato.setFone(request.getParameter("fone"));
+		contato.setEmail(request.getParameter("email"));
+		
+		// executando o metodo alterarContato
+		dao.alterarContato(contato);
+		
+		// redirecionar ao documento ageda.jsp (atualizando as ateraçoes.
 		response.sendRedirect("main");
 	}
 }

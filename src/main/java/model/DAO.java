@@ -73,6 +73,44 @@ public class DAO {
 		}
 	}
 	
+	public void selecionarContato(JavaBeans contato) {
+		String read = "SELECT * FROM contatos WHERE idcon = ?";
+		try {
+			Connection conn = conectar();
+			PreparedStatement pst = conn.prepareStatement(read);
+			pst.setInt(1, contato.getIdcon());
+			ResultSet rs = pst.executeQuery();
+			
+			while (rs.next()) {
+				// setar as variaveis JavaBeans
+				contato.setIdcon(rs.getInt(1));
+				contato.setNome(rs.getString(2));
+				contato.setFone(rs.getString(3));
+				contato.setEmail(rs.getString(4));
+			}
+			
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("ERRO: " + e.getMessage());
+		}
+	}
+	
+	public void alterarContato(JavaBeans contato) {
+		String create = "UPDATE contatos SET nome=?, fone=?, email=? WHERE idcon=?";
+		
+		try {
+			Connection conn = conectar();
+			PreparedStatement pst = conn.prepareStatement(create);
+			pst.setString(1, contato.getNome());
+			pst.setString(2, contato.getFone());
+			pst.setString(3, contato.getEmail());
+			pst.setString(4, contato.getIdcon().toString());
+			pst.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("ERRO: " + e.getMessage());
+		}
+	}
+	
 	// testar conexao
 	/*public void testeConnection() {
 		try {

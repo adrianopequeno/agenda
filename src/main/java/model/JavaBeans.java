@@ -19,7 +19,7 @@ public class JavaBeans {
 		this.fone = fone;
 		this.email = email;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -46,6 +46,10 @@ public class JavaBeans {
 
 	public Integer getIdcon() {
 		return idcon;
+	}
+
+	public void setIdcon(Integer idcon) {
+		this.idcon = idcon;
 	}
 
 	@Override
